@@ -24,6 +24,7 @@ const config = require('./config.conf');
 const server_port = config.port;
 const whitelist = config.whitelist;
 const whitelistMode = config.whitelistMode;
+const listenIp = config.listenIp || '127.0.0.1';
 const autorun = config.autorun;
 
 var Client = require('node-rest-client').Client;
@@ -1107,7 +1108,7 @@ app.post("/importchat", urlencodedParser, function(request, response){
 
 
 
-app.listen(server_port, function() {
+app.listen(server_port, listenIp, function() {
     if(process.env.colab !== undefined){
         if(process.env.colab == 2){
             is_colab = true;
